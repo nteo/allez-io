@@ -38,9 +38,9 @@
 		$(function(){
 		 	
 			var d = new Date();
-			$('#start_time').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + " 7:00");
+			$('#start_time').val(d.getFullYear() + '-' + d.getMonth()>11?1:d.getMonth()+1 + '-' + d.getDate() + " 7:00");
 			//d.setDate(d.getDate() + 1);
-			$('#end_time').val(d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + " 21:00");
+			$('#end_time').val(d.getFullYear() + '-' + d.getMonth()>11?1:d.getMonth()+1 + '-' + d.getDate() + " 21:00");
 			
 			$('#end_time').change(function() {
 			    $('#start_time').appendDtpicker({
