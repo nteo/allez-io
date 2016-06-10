@@ -25,6 +25,8 @@ Parse.Cloud.define('getCsv', function(req, res) {
 		
 		
 		for (var i = 0; i<datas.length; i++) {
+			console.log(datas[i]);
+			/*
 			var splitData = datas[i].result.sensorData.match(/.{1,16}/g);
 			for (var j = 0; j<splitData.length; j++) {
 				var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
@@ -32,6 +34,7 @@ Parse.Cloud.define('getCsv', function(req, res) {
 				console.log(j, ' -- ', test);
 			}
 			csv+='\n';
+			*/
 		}
 		
 	    	//var csvBlob = json2csv(jsonBlob);
