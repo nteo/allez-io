@@ -9,10 +9,10 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	};
   if(!req.params['start_time']){
     //return res.error(req.params);
-    console.log('notime start')
+    console.log('notime starst')
   }
   if(!req.params.end_time){
-    console.log('notime start')
+    console.log('notime end')
   }
   console.log(req.params['start_time'], '---', req.params.end_time);
   var queryMyClass = new Parse.Query("BioHex");
