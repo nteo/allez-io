@@ -4,17 +4,17 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 Parse.Cloud.define('getCsv', function(req, res) {
 	console.log('trying to get ... ', req.params);
-	for (var i = req.params.length - 1; i >= 0; i--) {
-		console.log('-----', req.params[i]);
+	for (var i = req.body.length - 1; i >= 0; i--) {
+		console.log('-----', req.body[i]);
 	};
-  if(!req.params.start_time){
+  if(!req.body.start_time){
     //return res.error(req.params);
     console.log('notime start')
   }
-  if(!req.params.end_time){
+  if(!req.body.end_time){
     console.log('notime start')
   }
-  console.log(req.params.start_time, '---', req.params.end_time);
+  console.log(req.body.start_time, '---', req.body.end_time);
   var queryMyClass = new Parse.Query("BioHex");
   queryMyClass.limit(10);
 	queryMyClass.find(
