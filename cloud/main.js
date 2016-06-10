@@ -3,6 +3,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.define('getCsv', function(req, res) {
+	console.log('trying to get ... ');
 	for (var i = req.params.length - 1; i >= 0; i--) {
 		console.log('-----', req.params[i]);
 	};
