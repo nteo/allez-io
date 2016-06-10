@@ -40,6 +40,8 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	    	//var csvBlob = json2csv(jsonBlob);
 			//res.writeHead(200, {'Content-Type': 'text/csv' });
 			//res.end('csvBlob;sssss');
+			console.log(datas[0].sensorData);
+			console.log(datas[0].result);
 	        return res.success(datas[0]);
 	},
 	    error:function(error)
