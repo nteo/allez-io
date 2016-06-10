@@ -11,9 +11,10 @@ Parse.Cloud.define('getCsv', function(req, res) {
   }
   
   console.log(req.params['start_time'], '---', req.params.end_time);
-  var queryMyClass = new Parse.Query("BioHex");
-  queryMyClass.limit(100);
-	queryMyClass.find(
+  var query = new Parse.Query("BioHex");
+  query.limit(100);
+  query.greaterThanOrEqualTo( "_updated_at", req.params.end_time);
+	query.find(
 	{
 	    success:function(objects)
 	    {
