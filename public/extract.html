@@ -65,11 +65,13 @@
 		    data.start_time=$("#start_time").val();
 		    data.end_time=$("#end_time").val();
 
-		    $.post({
+		    $.ajax({
+		           type: "POST",
 		           headers: {'X-Parse-Application-Id':'allezio'},
+		           contentType: "application/json",
     			   dataType: 'json',
 		           url: url,
-		           data: JSON.stringify(data),
+		           data:  JSON.stringify(data),
 		           success: function(data)
 		           {
 		               console.log(data); 
