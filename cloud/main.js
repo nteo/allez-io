@@ -3,7 +3,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.define('getCsv', function(req, res) {
-	Parse.Cloud.useMasterKey();
+
   if(!req.params.start_time){
     return res.error("no start_time");
   }
@@ -16,7 +16,13 @@ Parse.Cloud.define('getCsv', function(req, res) {
   query.limit(1000);
   query.lessThanOrEqualTo( "updatedAt", new Date(req.params.end_time));
   query.greaterThanOrEqualTo( "updatedAt", new Date(req.params.start_time));
-	query.find(
+  query.find().then(function(datas){
+		Parse._.each(function(result){
+        console.log("result:", result);
+        
+    });
+		return res.success(result);
+/*	
 	{
 	    success:function(datas)
 	    {
@@ -35,7 +41,7 @@ Parse.Cloud.define('getCsv', function(req, res) {
 				console.log(j, ' -- ', test);
 			}
 			csv+='\n';
-			*/
+			
 		}
 		
 	    	//var csvBlob = json2csv(jsonBlob);
@@ -51,5 +57,5 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	        return res.error(error);
 	    }
 	});
-
+*/
 });
