@@ -19,8 +19,9 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	{
 	    success:function(objects)
 	    {
-	    	res.setHeader('content-type', 'text/csv');
-	        return res.success('objects;test;');
+	    	//res.setHeader('content-type', 'text/csv');
+	    	res.writeHead(200, {'Content-Type': 'text/csv'});
+	        return res.success('objects;test');
 	},
 	    error:function(error)
 	    {
