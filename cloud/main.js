@@ -4,9 +4,9 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 Parse.Cloud.define('getCsv', function(req, res) {
 	console.log('trying to get ... ', req.params);
-	for (var i = req.body.length - 1; i >= 0; i--) {
-		console.log('-----', req.body[i]);
-	};
+	//for (var i = req.body.length - 1; i >= 0; i--) {
+	//	console.log('-----', req.body[i]);
+	//};
   if(!req.body.start_time){
     //return res.error(req.params);
     console.log('notime start')
