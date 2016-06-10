@@ -3,6 +3,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 Parse.Cloud.define('getCsv', function(req, res) {
+	Parse.Cloud.useMasterKey();
   if(!req.params.start_time){
     return res.error("no start_time");
   }
@@ -25,7 +26,7 @@ Parse.Cloud.define('getCsv', function(req, res) {
 		
 		
 		for (var i = 0; i<datas.length; i++) {
-			console.log(datas[i].sensorData);
+			console.log(datas[i]);
 			/*
 			var splitData = datas[i].result.sensorData.match(/.{1,16}/g);
 			for (var j = 0; j<splitData.length; j++) {
