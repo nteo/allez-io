@@ -12,7 +12,8 @@ Parse.Cloud.define('getCsv', function(req, res) {
   
   console.log(req.params['start_time'], '---', req.params.end_time);
   var query = new Parse.Query("BioHex");
-  query.limit(100);
+  query.limit(1000);
+  query.lowerThanOrEqualTo( "updatedAt", new Date(req.params.start_time));
   query.greaterThanOrEqualTo( "updatedAt", new Date(req.params.end_time));
 	query.find(
 	{
