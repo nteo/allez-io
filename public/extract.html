@@ -69,7 +69,7 @@
 		           headers: {'X-Parse-Application-Id':'allezio'},
     			   dataType: 'json',
 		           url: url,
-		           data: JSON.stringify({ "userName": userName, "password" : password })
+		           data: JSON.stringify(data),
 		           success: function(data)
 		           {
 		               console.log(data); 
