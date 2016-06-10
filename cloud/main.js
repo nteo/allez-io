@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 Parse.Cloud.define('getCsv', function(req, res) {
   if(!req.params.start_time){
-    return res.error("start_time param not found");
+    return res.error("start_time param not found", req.params);
   }
   if(!req.params.end_time){
     return res.error("end_time param not found");
