@@ -8,10 +8,11 @@ Parse.Cloud.define('getCsv', function(req, res) {
 		console.log('-----', req.params[i]);
 	};
   if(!req.params.start_time){
-    return res.error(req.params);
+    //return res.error(req.params);
+    console.log('notime start')
   }
   if(!req.params.end_time){
-    return res.error("end_time param not found");
+    console.log('notime start')
   }
   console.log(req.params.start_time, '---', req.params.end_time);
   var queryMyClass = new Parse.Query("BioHex");
@@ -20,11 +21,12 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	{
 	    success:function(objects)
 	    {
-	        console.log("MyClass.find succeeded with objects.length = " + objects.length);
+	        return res.success(objects);
 	},
 	    error:function(error)
 	    {
 	        console.error("MyClass.find failed. error = " + error);
+	        return res.error(error);
 	    }
 	});
 
