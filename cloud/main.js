@@ -18,10 +18,11 @@ Parse.Cloud.define('getCsv', function(req, res) {
   query.greaterThanOrEqualTo( "updatedAt", new Date(req.params.start_time));
   query.find().then(function(datas){
 		Parse._.each(function(result){
-        console.log("result:", result);
+        	console.log("result:", result);
+        	console.log("result:", result.sensorData);
         
-    });
-		return res.success(result);
+    	});
+		return res.success(datas);
 /*	
 	{
 	    success:function(datas)
@@ -59,3 +60,5 @@ Parse.Cloud.define('getCsv', function(req, res) {
 	});
 */
 });
+});
+
