@@ -40,8 +40,7 @@
 	</form>
 
 	<script type="text/javascript">
-		$(function(){
-		 	
+		$(function(){	 	
 			var d = new Date();
 			var month = d.getMonth()>11?1:d.getMonth()+1;
 			$('#start_time').val(d.getFullYear() + '-' + month + '-' + d.getDate() + " 7:00");
@@ -59,35 +58,15 @@
 				    maxDate: $('#end_time').val()
 			    });
 			});
-			//$('#start_time').val(d.getFullYear() + '-' + d.getMonth()>11?1:d.getMonth()+1 + '-' + d.getDate() + " 7:00");
-			//d.setDate(d.getDate() + 1);
-			//$('#end_time').val(d.getFullYear() + '-' + d.getMonth()>11?1:d.getMonth()+1 + '-' + d.getDate() + " 21:00");
-			// trigger change event so datapickers get attached
 			$('#end_time').trigger('change');
 			$('#start_time').trigger('change');
 		});
 		$("#extract").submit(function(e) {
-
 		    var url = "/userBikeDatas/"; 
 		    var data={};
 		    data.start_time=$("#start_time").val();
 		    data.end_time=$("#end_time").val();
 		    window.location = "/userBikeDatas/"+$("#user").val()+"/"+data.start_time+"/"+data.end_time;
-/*
-		    $.ajax({
-		           type: "POST",
-		           headers: {'X-Parse-Application-Id':'allezio'},
-		           url: url,
-		           data:  JSON.stringify(data),
-		           success: function(data)
-		           {
-		               console.log(data); 
-		               var file = "data.csv";
-        				window.location = "/userBikeDatas/ee";
-		               return;
-		           }
-		         });
-*/
 		    e.preventDefault(); 
 		});
 	</script>
