@@ -78,12 +78,13 @@ app.get("/userBikeDatas/:id/:start/:end", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
     } else {
-      var csv="HeartRate,MaxHeartRate,AverageHeartRate,Speed,MaxSpeed,AverageSpeed,Cadence,MaxCadence,AverageCadence,Power,AveragePower,MaxPower,MovingTime,TotalMovingTime,getDistance,TotalDistance,GPSStatus,GPSLatitude,"+
+      var csv="Date,HeartRate,MaxHeartRate,AverageHeartRate,Speed,MaxSpeed,AverageSpeed,Cadence,MaxCadence,AverageCadence,Power,AveragePower,MaxPower,MovingTime,TotalMovingTime,getDistance,TotalDistance,GPSStatus,GPSLatitude,"+
     "GPSLongitude,GPSSpeed,GPSAltitude,GPSTimeUTC,GPSdateUTC,Elevation,TotalElevation,Ax,Ay,Az,Gx,Gy,Gz,Mx,My,Mz,Grade,Temperature,WindSPeed,MaxWindSpeed,AverageWindSpeed,WindDirection"+"\n";
     for (var i = 0; i<datas.length; i++) {
       var splitData = datas[i].sensorData.match(/.{1,16}/g);
+        csv+=datas[i]._updated_at;
       for (var j = 0; j<splitData.length; j++) {
-        var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
+        //var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
         csv+=Buffer(splitData[j], 'hex').readDoubleBE(0)+',';
       }
       csv+='\n';
