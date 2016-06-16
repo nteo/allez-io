@@ -74,7 +74,7 @@ function handleError(res, reason, message, code) {
 app.get("/userBikeDatas/:id/:start/:end", function(req, res) {
   console.log("------",req.params.id, req.params.start, req.params.end);
   db.collection("BioHex").find({_p_user: '_User$'+req.params.id, _updated_at:{"$gte": new Date(req.params.start),"$lte": new Date(req.params.end)}}, {sensorData:true, _updated_at:true}).toArray(function(err, datas) {
-    console.log('**',datas.length);//_p_user: '_User$WG9qNBzaVZ'
+    console.log('**',datas.length, '**', new Date(req.params.end));//_p_user: '_User$WG9qNBzaVZ'
     if (err) {
       handleError(res, err.message, "Failed to get contact");
     } else {
@@ -82,7 +82,7 @@ app.get("/userBikeDatas/:id/:start/:end", function(req, res) {
     "GPSLongitude,GPSSpeed,GPSAltitude,GPSTimeUTC,GPSdateUTC,Elevation,TotalElevation,Ax,Ay,Az,Gx,Gy,Gz,Mx,My,Mz,Grade,Temperature,WindSPeed,MaxWindSpeed,AverageWindSpeed,WindDirection"+"\n";
     for (var i = 0; i<datas.length; i++) {
       var splitData = datas[i].sensorData.match(/.{1,16}/g);
-        csv+=datas[i]._updated_at;
+        csv+=datas[i]._updated_at+',';
       for (var j = 0; j<splitData.length; j++) {
         //var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
         csv+=Buffer(splitData[j], 'hex').readDoubleBE(0)+',';
