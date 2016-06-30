@@ -92,7 +92,7 @@ app.get("/userBikeDatas/:id/:start/:end", function(req, res) {
     }
       //console.log(csv);
       res.attachment('bikeDatas.csv');
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.writeHead(200, { 'Content-Type': 'text/csv' });
       res.end(csv, 'utf-8');
     }
   });

@@ -64,8 +64,8 @@
 		$("#extract").submit(function(e) {
 		    var url = "/userBikeDatas/"; 
 		    var data={};
-		    data.start_time=new Date($("#start_time").val()).toUTCString();
-		    data.end_time=new Date($("#end_time").val()).toUTCString();
+		    data.start_time=new Date($("#start_time").val().replace(/-/g, "/")).toUTCString();
+		    data.end_time=new Date($("#end_time").val().replace(/-/g, "/")).toUTCString();
 		    //console.log(new Date($("#end_time").val()).toUTCString());
 		    window.location = "/userBikeDatas/"+$("#user").val()+"/"+data.start_time+"/"+data.end_time;
 		    e.preventDefault(); 
