@@ -80,15 +80,21 @@ app.get("/userBikeDatas/:id/:start/:end", function(req, res) {
     } else {
       var csv="Date,HeartRate,MaxHeartRate,AverageHeartRate,Speed,MaxSpeed,AverageSpeed,Cadence,MaxCadence,AverageCadence,Power,AveragePower,MaxPower,MovingTime,TotalMovingTime,getDistance,TotalDistance,GPSStatus,GPSLatitude,"+
     "GPSLongitude,GPSSpeed,GPSAltitude,GPSTimeUTC,GPSdateUTC,Elevation,TotalElevation,Ax,Ay,Az,Gx,Gy,Gz,Mx,My,Mz,Grade,Temperature,WindSPeed,MaxWindSpeed,AverageWindSpeed,WindDirection"+"\n";
+    var lastDate=-1;
     for (var i = 0; i<datas.length; i++) {
-      var splitData = datas[i].sensorData.match(/.{1,16}/g);
-        csv+=datas[i].timestamp3+',';
-      for (var j = 0; j<splitData.length; j++) {
-        //var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
-        csv+=Buffer(splitData[j], 'hex').readDoubleBE(0)+',';
-      }
-      csv+='\n';
+      //console.log("lastDate-", lastDate, "data--", datas[i].timestamp3);
+      if(lastDate != datas[i].timestamp3.toString()){
+        //console.log("add");
+        var splitData = datas[i].sensorData.match(/.{1,16}/g);
       
+        csv+=datas[i].timestamp3+',';
+        for (var j = 0; j<splitData.length; j++) {
+          //var test = Buffer(splitData[j], 'hex').readDoubleBE(0);
+          csv+=Buffer(splitData[j], 'hex').readDoubleBE(0)+',';
+        }
+        csv+='\n';
+      }
+      lastDate = datas[i].timestamp3.toString();
     }
       //console.log(csv);
       res.attachment('bikeDatas.csv');
